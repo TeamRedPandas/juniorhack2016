@@ -24,10 +24,20 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:PointOfInterestData">
-                    <StackPanel Orientation="Horizontal">
-                        <Image DataContext="{x:Bind ImagePreview, Mode=OneWay}" Width="81" Height="81"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="81"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-                        <StackPanel Padding="10,5,0,5">
+                        <Image Source="Assets/StoreLogo.png"
+                               Width="81"
+                               Height="81"
+                               Grid.Column="0"
+                               />
+
+                        <StackPanel Padding="10,5,0,5" Grid.Column="1">
                             <TextBlock Text="{x:Bind Name, Mode=OneWay}" FontSize="20" TextWrapping="Wrap"/>
 
                             <Grid>
@@ -37,28 +47,35 @@
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Foreground="{StaticResource LightTextForegroundBrush}"
-                                           Margin="{StaticResource WordSpaceRightMargin}"
+                                           Margin="0,0,10,0"
                                            Grid.Column="0"
                                            >
                                     <Run x:Uid="Latitude"/>:
                                     <LineBreak/>
                                     <Run x:Uid="Longtitude"/>:
+                                    <LineBreak/>
+                                    <Run x:Uid="LastVisit"/>:
                                 </TextBlock>
-                                
+
                                 <TextBlock Foreground="{StaticResource LightTextForegroundBrush}"
                                            Grid.Column="1"
                                            >
                                     <Run Text="{x:Bind Latitude.IsPositive, Converter={StaticResource BoolToCoordinateCharConverter}, Mode=OneWay}"/><Run Text="{x:Bind Latitude.Degrees, Mode=OneWay}"/>°<Run Text="{x:Bind Latitude.Minutes, Mode=OneWay}"/>'<Run Text="{x:Bind Latitude.Seconds, Mode=OneWay}"/>"
                                     <LineBreak/>
                                     <Run Text="{x:Bind Longtitude.IsPositive, Converter={StaticResource BoolToCoordinateCharConverter}, Mode=OneWay}"/><Run Text="{x:Bind Longtitude.Degrees, Mode=OneWay}"/>°<Run Text="{x:Bind Longtitude.Minutes, Mode=OneWay}"/>'<Run Text="{x:Bind Longtitude.Seconds, Mode=OneWay}"/>"
+                                    <LineBreak/>
+                                    <Run Text="{x:Bind LastVisit, Mode=OneWay}"/>
                                 </TextBlock>
                             </Grid>
-                            
-                            <TextBlock Foreground="{StaticResource LightTextForegroundBrush}">
-                                <Run x:Uid="LastVisit"/>: <Run Text="{x:Bind LastVisit, Mode=OneWay}"/>
-                            </TextBlock>
                         </StackPanel>
-                    </StackPanel>
+
+                        <Button Content="&#xE0A1;"
+                                FontFamily="Segoe MDL2 Assets"
+                                VerticalAlignment="Stretch"
+                                Style="{StaticResource BorderlessButton}"
+                                Grid.Column="2"
+                                />
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
