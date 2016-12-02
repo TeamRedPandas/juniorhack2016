@@ -30,14 +30,22 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
 
                         <Image Source="Assets/StoreLogo.png"
                                Width="81"
                                Height="81"
                                Grid.Column="0"
+                               Grid.Row="0"
                                />
 
-                        <StackPanel Padding="10,5,0,5" Grid.Column="1">
+                        <StackPanel Padding="10,5,0,5"
+                                    Grid.Column="1"
+                                    Grid.Row="0"
+                                    >
                             <TextBlock Text="{x:Bind Name, Mode=OneWay}" FontSize="20" TextWrapping="Wrap"/>
 
                             <Grid>
@@ -69,12 +77,28 @@
                             </Grid>
                         </StackPanel>
 
-                        <Button Content="&#xE0A1;"
-                                FontFamily="Segoe MDL2 Assets"
-                                VerticalAlignment="Stretch"
-                                Style="{StaticResource BorderlessButton}"
-                                Grid.Column="2"
-                                />
+                        <ToggleButton IsChecked="{x:Bind IsMoreOpened, Converter={StaticResource BoolToBoolConverter}, Mode=TwoWay}"
+                                      FontFamily="Segoe MDL2 Assets"
+                                      VerticalAlignment="Stretch"
+                                      Style="{StaticResource BorderlessToggleButton}"
+                                      Grid.Row="0"
+                                      Grid.Column="2"
+                                      />
+
+                        <StackPanel Visibility="{x:Bind IsMoreOpened, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                    Padding="10"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    Grid.Row="1"
+                                    >
+                            <TextBlock x:Uid="Description"
+                                       FontSize="18"
+                                       TextWrapping="WrapWholeWords"
+                                       />
+                            <TextBlock Text="{x:Bind Description, Mode=OneWay}"
+                                       TextWrapping="Wrap"
+                                       />
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -8,6 +8,11 @@ namespace Project42
     public sealed class PointOfInterestData : NotifyPropertyChangedBase
     {
         internal string FileName { get; set; }
+        internal bool IsMoreOpened
+        {
+            get { return (bool)GetValue(nameof(IsMoreOpened)); }
+            set { SetValue(nameof(IsMoreOpened), ref value); }
+        }
 
         public string Name
         {
@@ -42,6 +47,8 @@ namespace Project42
 
         public PointOfInterestData()
         {
+            RegisterProperty(nameof(IsMoreOpened), typeof(bool), false);
+
             RegisterProperty(nameof(Name), typeof(string), "");
             RegisterProperty(nameof(Description), typeof(string), "");
             RegisterProperty(nameof(Latitude), typeof(Coordinate), new Coordinate());
