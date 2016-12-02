@@ -22,6 +22,8 @@ namespace Project42
                 pageLoaded = true;
                 TryInitialNavigation();
             };
+
+            BlueToothBackgroundWorker test = new BlueToothBackgroundWorker();
         }
 
         private void SystemNavigationManager_BackRequested(object sender, BackRequestedEventArgs e)
