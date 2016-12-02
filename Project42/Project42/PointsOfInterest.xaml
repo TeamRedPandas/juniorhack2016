@@ -29,10 +29,34 @@
 
                         <StackPanel Padding="10,5,0,5">
                             <TextBlock Text="{x:Bind Name, Mode=OneWay}" FontSize="20" TextWrapping="Wrap"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Foreground="{StaticResource LightTextForegroundBrush}"
+                                           Margin="{StaticResource WordSpaceRightMargin}"
+                                           Grid.Column="0"
+                                           >
+                                    <Run x:Uid="Latitude"/>:
+                                    <LineBreak/>
+                                    <Run x:Uid="Longtitude"/>:
+                                </TextBlock>
+                                
+                                <TextBlock Foreground="{StaticResource LightTextForegroundBrush}"
+                                           Grid.Column="1"
+                                           >
+                                    <Run Text="{x:Bind Latitude.IsPositive, Converter={StaticResource BoolToCoordinateCharConverter}, Mode=OneWay}"/><Run Text="{x:Bind Latitude.Degrees, Mode=OneWay}"/>°<Run Text="{x:Bind Latitude.Minutes, Mode=OneWay}"/>'<Run Text="{x:Bind Latitude.Seconds, Mode=OneWay}"/>"
+                                    <LineBreak/>
+                                    <Run Text="{x:Bind Longtitude.IsPositive, Converter={StaticResource BoolToCoordinateCharConverter}, Mode=OneWay}"/><Run Text="{x:Bind Longtitude.Degrees, Mode=OneWay}"/>°<Run Text="{x:Bind Longtitude.Minutes, Mode=OneWay}"/>'<Run Text="{x:Bind Longtitude.Seconds, Mode=OneWay}"/>"
+                                </TextBlock>
+                            </Grid>
+                            
                             <TextBlock Foreground="{StaticResource LightTextForegroundBrush}">
-                                <Run Text="{x:Bind Latitude, Mode=OneWay}"/> <Run Text="{x:Bind Longtitude}"/>
+                                <Run x:Uid="LastVisit"/>: <Run Text="{x:Bind LastVisit, Mode=OneWay}"/>
                             </TextBlock>
-                            <TextBlock Text="{x:Bind LastVisit, Mode=OneWay}" Foreground="{StaticResource LightTextForegroundBrush}"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
@@ -40,8 +64,8 @@
         </ListView>
 
         <CommandBar Grid.Row="1">
-            <AppBarButton Icon="Bullets"
-                          Content="Select"
+            <AppBarButton x:Uid="SelectButton"
+                          Icon="Bullets"
                           />
         </CommandBar>
     </Grid>

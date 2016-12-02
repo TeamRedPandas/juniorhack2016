@@ -9,6 +9,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <local:BoolToCoordinateCharConverter x:Key="BoolToCoordinateCharConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

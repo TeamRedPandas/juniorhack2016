@@ -76,9 +76,18 @@ namespace Project42
                     PointOfInterestData p = new PointOfInterestData();
                     p.Name = "Point";
                     p.LastVisit = DateTime.Now;
-                    p.Latitude = 53.5f;
-                    p.Longtitude = 54f;
-                    p.FileName = i.ToString();
+
+                    p.Latitude.Degrees = 53;
+                    p.Latitude.Minutes = 13;
+                    p.Latitude.Seconds = 156.43f;
+
+                    p.Longtitude.Degrees = 45;
+                    p.Longtitude.Minutes = 82;
+                    p.Longtitude.Seconds = 645.83f;
+                    p.Longtitude.IsPositive = false;
+
+
+                    p.FileName = i.ToString() + ".json";
 
                     AddPoint(p);
                 }

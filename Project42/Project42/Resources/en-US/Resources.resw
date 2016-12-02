@@ -42,4 +42,19 @@
   <data name="PointsOfInterest.PageTitle" xml:space="preserve">
     <value>Points of interest</value>
   </data>
+  <data name="LastVisit.Text" xml:space="preserve">
+    <value>Last visit</value>
+  </data>
+  <data name="SelectButton.Label" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SelectButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="Longtitude.Text" xml:space="preserve">
+    <value>Longtitude</value>
+  </data>
+  <data name="Latitude.Text" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
 </root>
