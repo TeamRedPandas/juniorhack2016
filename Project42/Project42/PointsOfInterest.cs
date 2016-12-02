@@ -75,10 +75,20 @@ namespace Project42
                 {
                     PointOfInterestData p = new PointOfInterestData();
                     p.Name = "Point";
+                    p.Description = "The Eiffel Tower (/ˈaɪfəl ˈtaʊər/ EYE-fəl TOWR; French: Tour Eiffel, pronounced: [tuʁ‿ɛfɛl]  listen) is a wrought iron lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower.";
                     p.LastVisit = DateTime.Now;
-                    p.Latitude = 53.5f;
-                    p.Longtitude = 54f;
-                    p.FileName = i.ToString();
+
+                    p.Latitude.Degrees = 53;
+                    p.Latitude.Minutes = 13;
+                    p.Latitude.Seconds = 156.43f;
+
+                    p.Longtitude.Degrees = 45;
+                    p.Longtitude.Minutes = 82;
+                    p.Longtitude.Seconds = 645.83f;
+                    p.Longtitude.IsPositive = false;
+
+
+                    p.FileName = i.ToString() + ".json";
 
                     AddPoint(p);
                 }

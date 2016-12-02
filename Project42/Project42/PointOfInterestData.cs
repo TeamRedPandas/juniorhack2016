@@ -8,6 +8,11 @@ namespace Project42
     public sealed class PointOfInterestData : NotifyPropertyChangedBase
     {
         internal string FileName { get; set; }
+        internal bool IsMoreOpened
+        {
+            get { return (bool)GetValue(nameof(IsMoreOpened)); }
+            set { SetValue(nameof(IsMoreOpened), ref value); }
+        }
 
         public string Name
         {
@@ -19,15 +24,15 @@ namespace Project42
             get { return (string)GetValue(nameof(Description)); }
             set { SetValue(nameof(Description), ref value); }
         }
-        public float Longtitude
+        public Coordinate Latitude
         {
-            get { return (float)GetValue(nameof(Longtitude)); }
-            set { SetValue(nameof(Longtitude), ref value); }
+            get { return (Coordinate)GetValue(nameof(Latitude)); }
+            set { SetValue(nameof(Coordinate), ref value); }
         }
-        public float Latitude
+        public Coordinate Longtitude
         {
-            get { return (float)GetValue(nameof(Latitude)); }
-            set { SetValue(nameof(Latitude), ref value); }
+            get { return (Coordinate)GetValue(nameof(Longtitude)); }
+            set { SetValue(nameof(Longtitude), ref value); }
         }
         public Image ImagePreview
         {
@@ -42,10 +47,12 @@ namespace Project42
 
         public PointOfInterestData()
         {
+            RegisterProperty(nameof(IsMoreOpened), typeof(bool), false);
+
             RegisterProperty(nameof(Name), typeof(string), "");
             RegisterProperty(nameof(Description), typeof(string), "");
-            RegisterProperty(nameof(Longtitude), typeof(float), 0f);
-            RegisterProperty(nameof(Latitude), typeof(float), 0f);
+            RegisterProperty(nameof(Latitude), typeof(Coordinate), new Coordinate());
+            RegisterProperty(nameof(Longtitude), typeof(Coordinate), new Coordinate());
             RegisterProperty(nameof(ImagePreview), typeof(Image), null);
             RegisterProperty(nameof(LastVisit), typeof(DateTime), new DateTime());
         }

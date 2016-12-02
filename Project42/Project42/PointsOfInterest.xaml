@@ -24,24 +24,89 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:PointOfInterestData">
-                    <StackPanel Orientation="Horizontal">
-                        <Image DataContext="{x:Bind ImagePreview, Mode=OneWay}" Width="81" Height="81"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="81"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
 
-                        <StackPanel Padding="10,5,0,5">
+                        <Image Source="Assets/StoreLogo.png"
+                               Width="81"
+                               Height="81"
+                               Grid.Column="0"
+                               Grid.Row="0"
+                               />
+
+                        <StackPanel Padding="10,5,0,5"
+                                    Grid.Column="1"
+                                    Grid.Row="0"
+                                    >
                             <TextBlock Text="{x:Bind Name, Mode=OneWay}" FontSize="20" TextWrapping="Wrap"/>
-                            <TextBlock Foreground="{StaticResource LightTextForegroundBrush}">
-                                <Run Text="{x:Bind Latitude, Mode=OneWay}"/> <Run Text="{x:Bind Longtitude}"/>
-                            </TextBlock>
-                            <TextBlock Text="{x:Bind LastVisit, Mode=OneWay}" Foreground="{StaticResource LightTextForegroundBrush}"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Foreground="{StaticResource LightTextForegroundBrush}"
+                                           Margin="0,0,10,0"
+                                           Grid.Column="0"
+                                           >
+                                    <Run x:Uid="Latitude"/>:
+                                    <LineBreak/>
+                                    <Run x:Uid="Longtitude"/>:
+                                    <LineBreak/>
+                                    <Run x:Uid="LastVisit"/>:
+                                </TextBlock>
+
+                                <TextBlock Foreground="{StaticResource LightTextForegroundBrush}"
+                                           Grid.Column="1"
+                                           >
+                                    <Run Text="{x:Bind Latitude.IsPositive, Converter={StaticResource BoolToCoordinateCharConverter}, Mode=OneWay}"/><Run Text="{x:Bind Latitude.Degrees, Mode=OneWay}"/>°<Run Text="{x:Bind Latitude.Minutes, Mode=OneWay}"/>'<Run Text="{x:Bind Latitude.Seconds, Mode=OneWay}"/>"
+                                    <LineBreak/>
+                                    <Run Text="{x:Bind Longtitude.IsPositive, Converter={StaticResource BoolToCoordinateCharConverter}, Mode=OneWay}"/><Run Text="{x:Bind Longtitude.Degrees, Mode=OneWay}"/>°<Run Text="{x:Bind Longtitude.Minutes, Mode=OneWay}"/>'<Run Text="{x:Bind Longtitude.Seconds, Mode=OneWay}"/>"
+                                    <LineBreak/>
+                                    <Run Text="{x:Bind LastVisit, Mode=OneWay}"/>
+                                </TextBlock>
+                            </Grid>
                         </StackPanel>
-                    </StackPanel>
+
+                        <ToggleButton IsChecked="{x:Bind IsMoreOpened, Converter={StaticResource BoolToBoolConverter}, Mode=TwoWay}"
+                                      FontFamily="Segoe MDL2 Assets"
+                                      VerticalAlignment="Stretch"
+                                      Style="{StaticResource BorderlessToggleButton}"
+                                      Grid.Row="0"
+                                      Grid.Column="2"
+                                      />
+
+                        <StackPanel Visibility="{x:Bind IsMoreOpened, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+                                    Padding="10"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    Grid.Row="1"
+                                    >
+                            <TextBlock x:Uid="Description"
+                                       FontSize="18"
+                                       TextWrapping="WrapWholeWords"
+                                       />
+                            <TextBlock Text="{x:Bind Description, Mode=OneWay}"
+                                       TextWrapping="Wrap"
+                                       />
+                        </StackPanel>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
         <CommandBar Grid.Row="1">
-            <AppBarButton Icon="Bullets"
-                          Content="Select"
+            <AppBarButton x:Uid="SelectButton"
+                          Icon="Bullets"
                           />
         </CommandBar>
     </Grid>
