@@ -11,6 +11,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <local:BoolToCoordinateCharConverter x:Key="BoolToCoordinateCharConverter"/>
+            <local:IntToBoolInvertedConverter x:Key="IntToBoolInvertedConverter"/>
 
             <Style x:Key="BorderlessToggleButton" TargetType="ToggleButton">
                 <Setter Property="Content" Value="&#xE0A1;"/>

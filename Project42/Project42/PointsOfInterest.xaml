@@ -8,6 +8,16 @@
                 >
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="PlaceholderStates">
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind _Collection.Count, Converter={StaticResource IntToBoolInvertedConverter}, Mode=OneWay}"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TB_Placeholder.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
             <VisualStateGroup x:Name="SelectionStates">
                 <VisualState>
                     <VisualState.StateTriggers>
@@ -28,6 +38,17 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+
+        <TextBlock x:Name="TB_Placeholder"
+                   x:Uid="NoPointsPlaceholder"
+                   x:DeferLoadStrategy="Lazy"
+                   Visibility="Collapsed"
+                   TextWrapping="WrapWholeWords"
+                   Foreground="{StaticResource LightTextForegroundBrush}"
+                   Style="{StaticResource TitleTextBlockStyle}"
+                   Margin="{StaticResource ContentMargin}"
+                   Grid.Row="0"
+                   />
 
         <ListView x:Name="LV_Points"
                   ItemsSource="{x:Bind _Collection}"
