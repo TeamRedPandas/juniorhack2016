@@ -75,9 +75,15 @@ namespace Project42
             pointOfInterestData.Latitude.Degrees    = int.Parse(resourceLoader.GetString(name + "/Latitude/Degrees"));
             pointOfInterestData.Latitude.Minutes    = int.Parse(resourceLoader.GetString(name + "/Latitude/Minutes"));
             pointOfInterestData.Latitude.Seconds    = float.Parse(resourceLoader.GetString(name + "/Latitude/Seconds"));
+
+            pointOfInterestData.Latitude.IsPositive = pointOfInterestData.Latitude.Degrees > 0;
+            
             pointOfInterestData.Longtitude.Degrees  = int.Parse(resourceLoader.GetString(name + "/Longtitude/Degrees"));
             pointOfInterestData.Longtitude.Minutes  = int.Parse(resourceLoader.GetString(name + "/Longtitude/Minutes"));
             pointOfInterestData.Longtitude.Seconds  = float.Parse(resourceLoader.GetString(name + "/Longtitude/Seconds"));
+
+            pointOfInterestData.Longtitude.IsPositive = pointOfInterestData.Longtitude.Degrees > 0;
+
             pointOfInterestData.LastVisit           = DateTime.Now;
 
             return pointOfInterestData;

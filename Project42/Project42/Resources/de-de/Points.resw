@@ -63,4 +63,28 @@
   <data name="CharlesBridge.Longtitude.Seconds" xml:space="preserve">
     <value>42.68</value>
   </data>
+  <data name="Karlstejn.Name" xml:space="preserve">
+    <value>Burg Karlstein</value>
+  </data>
+  <data name="Karlštejn.Description" xml:space="preserve">
+    <value>Die Burg Karlstein befindet sich in der Gemeinde Karlstein rund 30 km südwestlich von Prag in Tschechien. Die Höhenburg wurde von Kaiser Karl IV. erbaut und beherbergte von ca. 1350 bis 1421 die Reichskleinodien des Heiligen Römischen Reiches.</value>
+  </data>
+  <data name="Karlstejn.Latitude.Degrees" xml:space="preserve">
+    <value>49</value>
+  </data>
+  <data name="Karlstejn.Latitude.Minutes" xml:space="preserve">
+    <value>56</value>
+  </data>
+  <data name="Karlstejn.Latitude.Seconds" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="Karlstejn.Longtitude.Degrees" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="Karlstejn.Longtitude.Minutes" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="Karlstejn.Longtitude.Seconds" xml:space="preserve">
+    <value>16</value>
+  </data>
 </root>

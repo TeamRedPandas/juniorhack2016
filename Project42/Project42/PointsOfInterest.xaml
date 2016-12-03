@@ -93,7 +93,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Foreground="{StaticResource LightTextForegroundBrush}"
-                                           Margin="0,0,10,0"
+                                           Margin="0,0,4,0"
                                            Grid.Column="0"
                                            >
                                     <Run x:Uid="Latitude"/>:

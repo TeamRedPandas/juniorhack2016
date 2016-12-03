@@ -63,4 +63,28 @@
   <data name="CharlesBridge.Longtitude.Seconds" xml:space="preserve">
     <value>42.68</value>
   </data>
+  <data name="Karlstejn.Name" xml:space="preserve">
+    <value>Karlštejn castle</value>
+  </data>
+  <data name="Karlštejn.Description" xml:space="preserve">
+    <value>Karlštejn Castle (hrad Karlštejn) is a large Gothic castle founded 1348 CE by Charles IV, Holy Roman Emperor-elect and King of Bohemia. The castle served as a place for safekeeping the Imperial Regalia as well as the Bohemian/Czech crown jewels, holy relics, and other royal treasures. </value>
+  </data>
+  <data name="Karlstejn.Latitude.Degrees" xml:space="preserve">
+    <value>49</value>
+  </data>
+  <data name="Karlstejn.Latitude.Minutes" xml:space="preserve">
+    <value>56</value>
+  </data>
+  <data name="Karlstejn.Latitude.Seconds" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="Karlstejn.Longtitude.Degrees" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="Karlstejn.Longtitude.Minutes" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="Karlstejn.Longtitude.Seconds" xml:space="preserve">
+    <value>16</value>
+  </data>
 </root>
