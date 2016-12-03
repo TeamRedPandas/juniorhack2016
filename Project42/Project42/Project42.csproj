@@ -152,6 +152,7 @@
     <Content Include="Assets\AppList\AppList44x44Logo.targetsize-96_altform-unplated.png" />
     <Content Include="Assets\CharlesBridge.jpg" />
     <Content Include="Assets\Karlstejn.jpg" />
+    <Content Include="Assets\Karlstejn.wav" />
     <Content Include="Assets\Large\Large310x310Logo.scale-100.png" />
     <Content Include="Assets\Large\Large310x310Logo.scale-125.png" />
     <Content Include="Assets\Large\Large310x310Logo.scale-150.png" />

@@ -23,10 +23,9 @@ namespace Project42
         {
             get { return Collection; }
         }
-        
 
+        MediaElement PlayMusic;
         BlueToothBackgroundWorker BTWorker;
-
         PointOfInterestData model;
 
         ToastContent content;
@@ -57,7 +56,7 @@ namespace Project42
         {
             InitializeComponent();
 
-            model = PointOfInterestData.AssignFromResource("CharlesBridge");
+            model = PointOfInterestData.AssignFromResource("Karlstejn");
 
             //AddPoint(model);
 
@@ -98,7 +97,7 @@ namespace Project42
                             {
                                 new ToastButton("OK", "ok")
                                 {
-                                    ImageUri = "ok.png"
+
                                 }
                             }
                 },
@@ -159,6 +158,18 @@ namespace Project42
                 BTWorker.Scan();
                 ContentControlHandler();
             }); 
+        }
+
+        private async void PlaySound_Click(object sender, RoutedEventArgs e)
+        {
+            PlayMusic = new MediaElement();
+
+            PlayMusic.AudioCategory = Windows.UI.Xaml.Media.AudioCategory.Speech;
+            StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets");
+            StorageFile file = await folder.GetFileAsync(model.SoundUri);
+            var stream = await file.OpenAsync(FileAccessMode.Read);
+            PlayMusic.SetSource(stream, file.ContentType);
+            PlayMusic.Play();
         }
     }
 }

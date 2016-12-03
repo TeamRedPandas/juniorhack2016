@@ -142,6 +142,12 @@
                             <TextBlock Text="{x:Bind Description, Mode=OneWay}"
                                        TextWrapping="Wrap"
                                        />
+
+                            <Button x:Name="PlaySound"
+                                    Content="Play sample"
+                                    Click="PlaySound_Click"
+                                    HorizontalAlignment="Left"
+                                    Margin="10"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

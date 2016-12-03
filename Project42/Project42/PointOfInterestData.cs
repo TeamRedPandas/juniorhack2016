@@ -44,6 +44,11 @@ namespace Project42
             get { return (DateTime)GetValue(nameof(LastVisit)); }
             set { SetValue(nameof(LastVisit), ref value); }
         }
+        public string SoundUri
+        {
+            get { return (string)GetValue(nameof(SoundUri)); }
+            set { SetValue(nameof(SoundUri), ref value); }
+        }
 
         public PointOfInterestData()
         {
@@ -55,6 +60,7 @@ namespace Project42
             RegisterProperty(nameof(Longtitude), typeof(Coordinate), new Coordinate());
             RegisterProperty(nameof(ImageUri), typeof(string), null);
             RegisterProperty(nameof(LastVisit), typeof(DateTime), new DateTime());
+            RegisterProperty(nameof(SoundUri), typeof(string), null);
         }
 
         public async Task SaveAsync()
@@ -70,6 +76,7 @@ namespace Project42
 
             pointOfInterestData.FileName            = name + ".json";
             pointOfInterestData.ImageUri            = @"ms-appx:Assets/" + name + ".jpg";
+            pointOfInterestData.SoundUri            = name + ".wav";
             pointOfInterestData.Name                = resourceLoader.GetString(name + "/Name");
             pointOfInterestData.Description         = resourceLoader.GetString(name + "/Description");
             pointOfInterestData.Latitude.Degrees    = int.Parse(resourceLoader.GetString(name + "/Latitude/Degrees"));
