@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,8 @@ namespace Project42
 {
     class BlueToothBackgroundWorker
     {
+        public ObservableCollection<DeviceInformation> _device = new ObservableCollection<DeviceInformation>();
+
         private byte[] DEMO_DESTINATION_ONE = { 0x20, 0x16, 0x04, 0x11, 0x48, 0x82 } ; //0x201604114882;
         private byte[] DEMO_DESTINATION_TWO = { 0x20, 0x16, 0x04, 0x11, 0x48, 0x82 } ; //0x201604114882;
 
@@ -29,14 +32,23 @@ namespace Project42
 
         private async void Scan(object state)
         {
-            List<DeviceInformation> temp;
+            List<DeviceInformation> temp = new List<DeviceInformation>();
 
-            temp = (await DeviceInformation.FindAllAsync(BluetoothDevice.GetDeviceSelector())).ToList();
+            temp.AddAll((await DeviceInformation.FindAllAsync(BluetoothDevice.GetDeviceSelector())).ToList());
             temp.AddAll((await DeviceInformation.FindAllAsync(BluetoothDevice.GetDeviceSelectorFromPairingState(false))).ToList());
+            
+            foreach(var item in temp.ToList())
+            {
+                if (!Compare(item))
+                    temp.Remove(item);
+            }
 
-            temp.RemoveAll(obj => !Compare(obj));
+            lock (_device)
+            {
+                _device = new ObservableCollection<DeviceInformation>(temp); //.AddAll(temp_2);
+            }
 
-            foreach(var i in temp)
+            foreach(var i in _device)
             {
                 if (!i.Pairing.IsPaired && i.Pairing.CanPair)
                 {
@@ -56,11 +68,6 @@ namespace Project42
         private void cancer(DeviceInformationCustomPairing sender, DevicePairingRequestedEventArgs args)
         {
             args.Accept();
-        }
-
-        private void DeviceRemoved(DeviceWatcher sender, DeviceInformationUpdate args)
-        {
-            throw new NotImplementedException();
         }
 
         private bool Compare(DeviceInformation hledanejCancer)

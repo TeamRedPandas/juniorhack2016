@@ -22,8 +22,6 @@ namespace Project42
                 pageLoaded = true;
                 TryInitialNavigation();
             };
-
-            BlueToothBackgroundWorker test = new BlueToothBackgroundWorker();
         }
 
         private void SystemNavigationManager_BackRequested(object sender, BackRequestedEventArgs e)
@@ -50,7 +48,7 @@ namespace Project42
         {
             if (pageLoaded && frameLoaded)
             {
-                Fr_Main.Navigate(typeof(PointsOfInterest));
+                Fr_Main.Navigate(typeof(TestPage));
             }
         }
     }
