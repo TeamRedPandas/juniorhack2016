@@ -72,4 +72,16 @@
   <data name="W" xml:space="preserve">
     <value>z. d.</value>
   </data>
+  <data name="CancelSelectionButton.Label" xml:space="preserve">
+    <value>Zrušit</value>
+  </data>
+  <data name="CancelSelectionButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Zrušit výběr</value>
+  </data>
+  <data name="DeleteButton.Label" xml:space="preserve">
+    <value>Odstranit</value>
+  </data>
+  <data name="DeleteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Odstranit výběr</value>
+  </data>
 </root>

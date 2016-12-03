@@ -61,15 +61,27 @@
     <value>Länge</value>
   </data>
   <data name="SelectButton.Label" xml:space="preserve">
-    <value>Wählen</value>
+    <value>Auswahlmodus</value>
   </data>
   <data name="SelectButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Wählen</value>
+    <value>Auswahlmodus</value>
   </data>
   <data name="Description.Text" xml:space="preserve">
     <value>Beschreibung</value>
   </data>
   <data name="PointsOfInterest.PageTitle" xml:space="preserve">
     <value>Sehenswürdigkeiten</value>
+  </data>
+  <data name="CancelSelectionButton.Label" xml:space="preserve">
+    <value>Stornieren</value>
+  </data>
+  <data name="CancelSelectionButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Auswahlmodus stornieren</value>
+  </data>
+  <data name="DeleteButton.Label" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="DeleteButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Auswahlmodus entfernen</value>
   </data>
 </root>

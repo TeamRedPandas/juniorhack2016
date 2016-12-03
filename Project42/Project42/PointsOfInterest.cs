@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using UWPHelper.Utilities;
-using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 
 namespace Project42
@@ -28,16 +27,24 @@ namespace Project42
             return _folder;
         }
 
-        public static void AddPoint(PointOfInterestData pointOfInterestData)
+        public static async void AddPoint(PointOfInterestData pointOfInterestData)
         {
+            await pointOfInterestData.SaveAsync();
             Collection.Add(pointOfInterestData);
             pointOfInterestData.PropertyChanged += PointOfInterestDataPropertyChangedEventHandler;
         }
 
-        public static void DeletePoint(PointOfInterestData pointOfInterestData)
+        public static async void DeletePoint(PointOfInterestData pointOfInterestData)
         {
             pointOfInterestData.PropertyChanged -= PointOfInterestDataPropertyChangedEventHandler;
             Collection.Remove(pointOfInterestData);
+
+            StorageFile pointFile = await (await GetFolderAsync()).TryGetItemAsync(pointOfInterestData.FileName) as StorageFile;
+
+            if (pointFile != null)
+            {
+                await pointFile.DeleteAsync();
+            }
         }
 
         public static async Task SaveAsync()
@@ -55,7 +62,7 @@ namespace Project42
         {
             await Task.CompletedTask;
             Collection = new ObservableCollection<PointOfInterestData>();
-            Collection.Add(AddFromResource("CharlesBridge"));
+            Collection.Add(PointOfInterestData.AssignFromResource("CharlesBridge"));
 
             IReadOnlyList<StorageFile> pointFiles = await (await GetFolderAsync()).GetFilesAsync();
 
@@ -74,27 +81,6 @@ namespace Project42
                     }
                 }
             }
-        }
-
-        private static PointOfInterestData AddFromResource(string name)
-        {
-            ResourceLoader resourceLoader = ResourceLoader.GetForViewIndependentUse("Points");
-
-            PointOfInterestData pointOfInterestData = new PointOfInterestData();
-
-            pointOfInterestData.FileName            = name + ".json";
-            pointOfInterestData.ImageUri            = @"ms-appx:Assets/" + name + ".jpg";
-            pointOfInterestData.Name                = resourceLoader.GetString(name + "/Name");
-            pointOfInterestData.Description         = resourceLoader.GetString(name + "/Description");
-            pointOfInterestData.Latitude.Degrees    = int.Parse(resourceLoader.GetString(name + "/Latitude/Degrees"));
-            pointOfInterestData.Latitude.Minutes    = int.Parse(resourceLoader.GetString(name + "/Latitude/Minutes"));
-            pointOfInterestData.Latitude.Seconds    = float.Parse(resourceLoader.GetString(name + "/Latitude/Seconds"));
-            pointOfInterestData.Longtitude.Degrees  = int.Parse(resourceLoader.GetString(name + "/Longtitude/Degrees"));
-            pointOfInterestData.Longtitude.Minutes  = int.Parse(resourceLoader.GetString(name + "/Longtitude/Minutes"));
-            pointOfInterestData.Longtitude.Seconds  = float.Parse(resourceLoader.GetString(name + "/Longtitude/Seconds"));
-            pointOfInterestData.LastVisit           = DateTime.Now;
-
-            return pointOfInterestData;
         }
 
         private static async void PointOfInterestDataPropertyChangedEventHandler(object sender, PropertyChangedEventArgs e)

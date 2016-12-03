@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using UWPHelper.Utilities;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Foundation.Metadata;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -34,6 +36,11 @@ namespace Project42
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 Window.Current.Content = rootFrame;
+
+                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                {
+                    ApplicationViewHelper.SetStatusBarColors(ElementTheme.Dark, RequestedTheme);
+                }
             }
 
             LaunchActivatedEventArgs launchArgs = args as LaunchActivatedEventArgs;

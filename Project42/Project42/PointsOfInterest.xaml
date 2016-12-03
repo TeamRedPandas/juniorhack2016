@@ -7,14 +7,31 @@
                 mc:Ignorable="d"
                 >
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="SelectionStates">
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind Selection, Mode=OneWay}"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LV_Points.SelectionMode" Value="Multiple"/>
+                        <Setter Target="ABB_Select.Icon" Value="Cancel"/>
+                        <Setter Target="ABB_Select.Label" Value="{x:Bind Converter={StaticResource ResourceLoaderConverter}, ConverterParameter=CancelSelectionButton/Label}"/>
+                        <Setter Target="ABB_Select.(ToolTipService.ToolTip)" Value="{x:Bind Converter={StaticResource ResourceLoaderConverter}, ConverterParameter=CancelSelectionButton/ToolTipService/ToolTip}"/>
+                        <Setter Target="ABB_Delete.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <ListView ItemsSource="{x:Bind _Collection}"
+        <ListView x:Name="LV_Points"
+                  ItemsSource="{x:Bind _Collection}"
                   SelectionMode="None"
-                  IsItemClickEnabled="True"
                   >
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
@@ -111,8 +128,17 @@
         </ListView>
 
         <CommandBar Grid.Row="1">
-            <AppBarButton x:Uid="SelectButton"
+            <AppBarButton x:Name="ABB_Delete"
+                          x:Uid="DeleteButton"
+                          x:DeferLoadStrategy="Lazy"
+                          Visibility="Collapsed"
+                          Icon="Delete"
+                          Click="DeleteSelection"
+                          />
+            <AppBarButton x:Name="ABB_Select"
+                          x:Uid="SelectButton"
                           Icon="Bullets"
+                          Click="ToggleSelection"
                           />
         </CommandBar>
     </Grid>

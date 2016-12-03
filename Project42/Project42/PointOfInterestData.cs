@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using UWPHelper.Utilities;
+using Windows.ApplicationModel.Resources;
 
 namespace Project42
 {
@@ -59,6 +60,27 @@ namespace Project42
         public async Task SaveAsync()
         {
             await StorageFileHelper.SaveObjectAsync(this, FileName, await PointsOfInterest.GetFolderAsync());
+        }
+
+        public static PointOfInterestData AssignFromResource(string name)
+        {
+            ResourceLoader resourceLoader = ResourceLoader.GetForViewIndependentUse("Points");
+
+            PointOfInterestData pointOfInterestData = new PointOfInterestData();
+
+            pointOfInterestData.FileName            = name + ".json";
+            pointOfInterestData.ImageUri            = @"ms-appx:Assets/" + name + ".jpg";
+            pointOfInterestData.Name                = resourceLoader.GetString(name + "/Name");
+            pointOfInterestData.Description         = resourceLoader.GetString(name + "/Description");
+            pointOfInterestData.Latitude.Degrees    = int.Parse(resourceLoader.GetString(name + "/Latitude/Degrees"));
+            pointOfInterestData.Latitude.Minutes    = int.Parse(resourceLoader.GetString(name + "/Latitude/Minutes"));
+            pointOfInterestData.Latitude.Seconds    = float.Parse(resourceLoader.GetString(name + "/Latitude/Seconds"));
+            pointOfInterestData.Longtitude.Degrees  = int.Parse(resourceLoader.GetString(name + "/Longtitude/Degrees"));
+            pointOfInterestData.Longtitude.Minutes  = int.Parse(resourceLoader.GetString(name + "/Longtitude/Minutes"));
+            pointOfInterestData.Longtitude.Seconds  = float.Parse(resourceLoader.GetString(name + "/Longtitude/Seconds"));
+            pointOfInterestData.LastVisit           = DateTime.Now;
+
+            return pointOfInterestData;
         }
     }
 }
