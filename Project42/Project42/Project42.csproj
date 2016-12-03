@@ -94,6 +94,10 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="project.json" />
+    <PRIResource Include="Resources\de-de\Points.resw" />
+    <PRIResource Include="Resources\de-de\Resources.resw" />
+    <PRIResource Include="Resources\en-US\Points.resw" />
+    <PRIResource Include="Resources\cs-CZ\Points.resw" />
     <PRIResource Include="Resources\en-US\Resources.resw" />
     <PRIResource Include="Resources\cs-CZ\Resources.resw" />
   </ItemGroup>
@@ -121,14 +125,57 @@
     <None Include="Project42_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\AppList\AppList44x44Logo.scale-100.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.scale-125.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.scale-150.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.scale-200.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.scale-400.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.targetsize-16_altform-unplated.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.targetsize-20_altform-unplated.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.targetsize-256_altform-unplated.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.targetsize-30_altform-unplated.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.targetsize-32_altform-unplated.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.targetsize-36_altform-unplated.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.targetsize-40_altform-unplated.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.targetsize-48_altform-unplated.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.targetsize-60_altform-unplated.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.targetsize-64_altform-unplated.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.targetsize-72_altform-unplated.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.targetsize-80_altform-unplated.png" />
+    <Content Include="Assets\AppList\AppList44x44Logo.targetsize-96_altform-unplated.png" />
+    <Content Include="Assets\CharlesBridge.jpg" />
+    <Content Include="Assets\Large\Large310x310Logo.scale-100.png" />
+    <Content Include="Assets\Large\Large310x310Logo.scale-125.png" />
+    <Content Include="Assets\Large\Large310x310Logo.scale-150.png" />
+    <Content Include="Assets\Large\Large310x310Logo.scale-200.png" />
+    <Content Include="Assets\Large\Large310x310Logo.scale-400.png" />
+    <Content Include="Assets\Medium\Medium150x150Logo.scale-100.png" />
+    <Content Include="Assets\Medium\Medium150x150Logo.scale-125.png" />
+    <Content Include="Assets\Medium\Medium150x150Logo.scale-150.png" />
+    <Content Include="Assets\Medium\Medium150x150Logo.scale-200.png" />
+    <Content Include="Assets\Medium\Medium150x150Logo.scale-400.png" />
+    <Content Include="Assets\Small\Small71x71Logo.scale-100.png" />
+    <Content Include="Assets\Small\Small71x71Logo.scale-125.png" />
+    <Content Include="Assets\Small\Small71x71Logo.scale-150.png" />
+    <Content Include="Assets\Small\Small71x71Logo.scale-200.png" />
+    <Content Include="Assets\Small\Small71x71Logo.scale-400.png" />
+    <Content Include="Assets\SplashScreen\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen\SplashScreen.scale-200.png" />
+    <Content Include="Assets\SplashScreen\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Store\StoreLogo.scale-100.png" />
+    <Content Include="Assets\Store\StoreLogo.scale-125.png" />
+    <Content Include="Assets\Store\StoreLogo.scale-150.png" />
+    <Content Include="Assets\Store\StoreLogo.scale-200.png" />
+    <Content Include="Assets\Store\StoreLogo.scale-400.png" />
+    <Content Include="Assets\Wide\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\Wide\Wide310x150Logo.scale-200.png" />
+    <Content Include="Assets\Wide\Wide310x150Logo.scale-400.png" />
     <Content Include="Properties\Default.rd.xml" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

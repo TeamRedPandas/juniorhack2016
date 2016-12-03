@@ -24,7 +24,7 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:PointOfInterestData">
-                    <Grid>
+                    <Grid Padding="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="81"/>
                             <ColumnDefinition/>
@@ -35,14 +35,14 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <Image Source="Assets/StoreLogo.png"
+                        <Image Source="{x:Bind ImageUri, Mode=OneWay}"
                                Width="81"
                                Height="81"
                                Grid.Column="0"
                                Grid.Row="0"
                                />
 
-                        <StackPanel Padding="10,5,0,5"
+                        <StackPanel Padding="10,0,0,0"
                                     Grid.Column="1"
                                     Grid.Row="0"
                                     >
@@ -68,10 +68,16 @@
                                 <TextBlock Foreground="{StaticResource LightTextForegroundBrush}"
                                            Grid.Column="1"
                                            >
-                                    <Run Text="{x:Bind Latitude.IsPositive, Converter={StaticResource BoolToCoordinateCharConverter}, Mode=OneWay}"/><Run Text="{x:Bind Latitude.Degrees, Mode=OneWay}"/>°<Run Text="{x:Bind Latitude.Minutes, Mode=OneWay}"/>'<Run Text="{x:Bind Latitude.Seconds, Mode=OneWay}"/>"
+                                    <Run Text="{x:Bind Latitude.Degrees, Mode=OneWay}"/>°<Run Text="{x:Bind Latitude.Minutes, Mode=OneWay}"/>'<Run Text="{x:Bind Latitude.Seconds, Mode=OneWay}"/>"
+                                    <Run Text="{x:Bind Latitude.IsPositive, Converter={StaticResource BoolToCoordinateCharConverter}, ConverterParameter=latitude, Mode=OneWay}"/>
+                                    
                                     <LineBreak/>
-                                    <Run Text="{x:Bind Longtitude.IsPositive, Converter={StaticResource BoolToCoordinateCharConverter}, Mode=OneWay}"/><Run Text="{x:Bind Longtitude.Degrees, Mode=OneWay}"/>°<Run Text="{x:Bind Longtitude.Minutes, Mode=OneWay}"/>'<Run Text="{x:Bind Longtitude.Seconds, Mode=OneWay}"/>"
+                                    
+                                    <Run Text="{x:Bind Longtitude.Degrees, Mode=OneWay}"/>°<Run Text="{x:Bind Longtitude.Minutes, Mode=OneWay}"/>'<Run Text="{x:Bind Longtitude.Seconds, Mode=OneWay}"/>"
+                                    <Run Text="{x:Bind Longtitude.IsPositive, Converter={StaticResource BoolToCoordinateCharConverter}, Mode=OneWay}"/>
+                                    
                                     <LineBreak/>
+                                    
                                     <Run Text="{x:Bind LastVisit, Mode=OneWay}"/>
                                 </TextBlock>
                             </Grid>

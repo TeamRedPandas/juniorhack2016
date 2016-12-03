@@ -39,37 +39,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PointsOfInterest.PageTitle" xml:space="preserve">
-    <value>Points of interest</value>
+  <data name="CharlesBridge.Name" xml:space="preserve">
+    <value>Charles bridge</value>
   </data>
-  <data name="LastVisit.Text" xml:space="preserve">
-    <value>Last visit</value>
+  <data name="CharlesBridge.Description" xml:space="preserve">
+    <value>The Charles Bridge (Karlův most) is an historic bridge that crosses the Vltava river in Prague, Czech Republic. Its construction started in 1357 under the auspices of King Charles IV, and finished in the beginning of the 15th century. The bridge replaced the old Judith Bridge built 1158–1172 that had been badly damaged by a flood in 1342. </value>
   </data>
-  <data name="SelectButton.Label" xml:space="preserve">
-    <value>Select</value>
+  <data name="CharlesBridge.Latitude.Degrees" xml:space="preserve">
+    <value>50</value>
   </data>
-  <data name="SelectButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Select</value>
+  <data name="CharlesBridge.Latitude.Minutes" xml:space="preserve">
+    <value>5</value>
   </data>
-  <data name="Longtitude.Text" xml:space="preserve">
-    <value>Longtitude</value>
+  <data name="CharlesBridge.Latitude.Seconds" xml:space="preserve">
+    <value>11.21</value>
   </data>
-  <data name="Latitude.Text" xml:space="preserve">
-    <value>Latitude</value>
+  <data name="CharlesBridge.Longtitude.Degrees" xml:space="preserve">
+    <value>14</value>
   </data>
-  <data name="Description.Text" xml:space="preserve">
-    <value>Description</value>
+  <data name="CharlesBridge.Longtitude.Minutes" xml:space="preserve">
+    <value>24</value>
   </data>
-  <data name="N" xml:space="preserve">
-    <value>N</value>
-  </data>
-  <data name="S" xml:space="preserve">
-    <value>S</value>
-  </data>
-  <data name="E" xml:space="preserve">
-    <value>E</value>
-  </data>
-  <data name="W" xml:space="preserve">
-    <value>W</value>
+  <data name="CharlesBridge.Longtitude.Seconds" xml:space="preserve">
+    <value>42.68</value>
   </data>
 </root>

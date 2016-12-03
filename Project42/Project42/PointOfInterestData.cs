@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using UWPHelper.Utilities;
-using Windows.UI.Xaml.Controls;
 
 namespace Project42
 {
@@ -34,10 +33,10 @@ namespace Project42
             get { return (Coordinate)GetValue(nameof(Longtitude)); }
             set { SetValue(nameof(Longtitude), ref value); }
         }
-        public Image ImagePreview
+        public string ImageUri
         {
-            get { return (Image)GetValue(nameof(ImagePreview)); }
-            set { SetValue(nameof(ImagePreview), ref value); }
+            get { return (string)GetValue(nameof(ImageUri)); }
+            set { SetValue(nameof(ImageUri), ref value); }
         }
         public DateTime LastVisit
         {
@@ -53,7 +52,7 @@ namespace Project42
             RegisterProperty(nameof(Description), typeof(string), "");
             RegisterProperty(nameof(Latitude), typeof(Coordinate), new Coordinate());
             RegisterProperty(nameof(Longtitude), typeof(Coordinate), new Coordinate());
-            RegisterProperty(nameof(ImagePreview), typeof(Image), null);
+            RegisterProperty(nameof(ImageUri), typeof(string), null);
             RegisterProperty(nameof(LastVisit), typeof(DateTime), new DateTime());
         }
 

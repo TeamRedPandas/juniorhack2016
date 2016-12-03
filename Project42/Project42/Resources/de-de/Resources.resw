@@ -39,26 +39,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PointsOfInterest.PageTitle" xml:space="preserve">
-    <value>Points of interest</value>
-  </data>
   <data name="LastVisit.Text" xml:space="preserve">
-    <value>Last visit</value>
-  </data>
-  <data name="SelectButton.Label" xml:space="preserve">
-    <value>Select</value>
-  </data>
-  <data name="SelectButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Select</value>
-  </data>
-  <data name="Longtitude.Text" xml:space="preserve">
-    <value>Longtitude</value>
-  </data>
-  <data name="Latitude.Text" xml:space="preserve">
-    <value>Latitude</value>
-  </data>
-  <data name="Description.Text" xml:space="preserve">
-    <value>Description</value>
+    <value>Vor kurzem besucht</value>
   </data>
   <data name="N" xml:space="preserve">
     <value>N</value>
@@ -67,9 +49,27 @@
     <value>S</value>
   </data>
   <data name="E" xml:space="preserve">
-    <value>E</value>
+    <value>O</value>
   </data>
   <data name="W" xml:space="preserve">
     <value>W</value>
+  </data>
+  <data name="Latitude.Text" xml:space="preserve">
+    <value>Breite</value>
+  </data>
+  <data name="Longtitude.Text" xml:space="preserve">
+    <value>Länge</value>
+  </data>
+  <data name="SelectButton.Label" xml:space="preserve">
+    <value>Wählen</value>
+  </data>
+  <data name="SelectButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Wählen</value>
+  </data>
+  <data name="Description.Text" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="PointsOfInterest.PageTitle" xml:space="preserve">
+    <value>Sehenswürdigkeiten</value>
   </data>
 </root>
