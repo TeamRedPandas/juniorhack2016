@@ -19,15 +19,17 @@ namespace Project42
     class BlueToothBackgroundWorker
     {
         public ObservableCollection<DeviceInformation> _device = new ObservableCollection<DeviceInformation>();
-
-        private byte[] DEMO_DESTINATION_ONE = { 0x20, 0x16, 0x04, 0x11, 0x48, 0x82 } ; //0x201604114882;
-        private byte[] DEMO_DESTINATION_TWO = { 0x20, 0x16, 0x04, 0x11, 0x48, 0x82 } ; //0x201604114882;
-
+        
         Timer forceUpdate;
+
+        public byte[] DEMO_DESTINATION_ONE = { 0x20, 0x16, 0x04, 0x11, 0x48, 0x82 }; //0x201604114882;
+        public byte[] DEMO_DESTINATION_TWO = { 0x20, 0x16, 0x04, 0x11, 0x48, 0x82 }; //0x201604114882;
+
+        public Action UpdateUI;
 
         public BlueToothBackgroundWorker()
         {
-            forceUpdate = new Timer(Scan, null, 0, 60000);
+            forceUpdate = new Timer(Scan, null, 0, 5000);
         }
 
         private async void Scan(object state)
@@ -39,7 +41,7 @@ namespace Project42
             
             foreach(var item in temp.ToList())
             {
-                if (!Compare(item))
+                if (!Compare(item, DEMO_DESTINATION_ONE))
                     temp.Remove(item);
             }
 
@@ -48,8 +50,10 @@ namespace Project42
                 _device = new ObservableCollection<DeviceInformation>(temp);
             }
 
-            foreach(var i in _device)
+            foreach (var i in _device)
             {
+                Debug.WriteLine($"{i.Id} {i.Name}");
+
                 DevicePairingResult pairingResult = null;
                 
                 if (!i.Pairing.IsPaired && i.Pairing.CanPair)
@@ -65,6 +69,8 @@ namespace Project42
                     Debug.WriteLine(pairingResult.Status);
                 }
             }
+
+            UpdateUI?.Invoke();
         }
 
         private void A(DeviceInformationCustomPairing sender, DevicePairingRequestedEventArgs args)
@@ -72,9 +78,12 @@ namespace Project42
             args.Accept("1234");
         }
 
-        private bool Compare(DeviceInformation hledanejCancer)
+        public bool Compare(DeviceInformation hledanejCancer, byte[] DEMO_DEMONSTRATION)
         {
-            Debug.WriteLine(string.Format($"{hledanejCancer.Id} {hledanejCancer.Name} {hledanejCancer.Kind}"));
+            //Debug.WriteLine(string.Format($"{hledanejCancer.Id} {hledanejCancer.Name} {hledanejCancer.Kind}"));
+
+            if (hledanejCancer == null)
+                return false;
 
             string[] temp = hledanejCancer.Id.Split('-')[1].ToUpper().Split(':');
 
@@ -83,7 +92,7 @@ namespace Project42
             for (int i = 0; i < MAC.Length; i++)
                 MAC[i] = temp[i].StringToByte();
 
-            return MACComparator(MAC, DEMO_DESTINATION_ONE);
+            return MACComparator(MAC, DEMO_DEMONSTRATION);
             /*if(MACComparator(MAC, DEMO_DESTINATION_TWO))
             {
                 try
@@ -99,7 +108,7 @@ namespace Project42
         }
         
 
-        private bool MACComparator(byte[] MAC_1, byte[] MAC_2)
+        public bool MACComparator(byte[] MAC_1, byte[] MAC_2)
         {
             if (MAC_1.Length != 6 || MAC_2.Length != 6)
                 throw new Exception("One of arrays is not MAC");
