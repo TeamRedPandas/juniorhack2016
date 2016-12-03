@@ -43,7 +43,7 @@
     <value>Body zájmu</value>
   </data>
   <data name="LastVisit.Text" xml:space="preserve">
-    <value>Naposledy navštíveno</value>
+    <value>Navštíveno</value>
   </data>
   <data name="SelectButton.Label" xml:space="preserve">
     <value>Vybrat</value>
