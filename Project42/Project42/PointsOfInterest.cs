@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using UWPHelper.Utilities;
+using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 
 namespace Project42
@@ -43,7 +44,10 @@ namespace Project42
         {
             foreach (PointOfInterestData pointOfInterestData in Collection)
             {
-                await pointOfInterestData.SaveAsync();
+                if (pointOfInterestData.FileName != "CharlesBridge.json")
+                {
+                    await pointOfInterestData.SaveAsync();
+                }
             }
         }
 
@@ -51,6 +55,7 @@ namespace Project42
         {
             await Task.CompletedTask;
             Collection = new ObservableCollection<PointOfInterestData>();
+            Collection.Add(AddFromResource("CharlesBridge"));
 
             IReadOnlyList<StorageFile> pointFiles = await (await GetFolderAsync()).GetFilesAsync();
 
@@ -69,30 +74,27 @@ namespace Project42
                     }
                 }
             }
-            else
-            {
-                for (int i = 0; i < 5; i++)
-                {
-                    PointOfInterestData p = new PointOfInterestData();
-                    p.Name = "Point";
-                    p.Description = "The Eiffel Tower (/ˈaɪfəl ˈtaʊər/ EYE-fəl TOWR; French: Tour Eiffel, pronounced: [tuʁ‿ɛfɛl]  listen) is a wrought iron lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower.";
-                    p.LastVisit = DateTime.Now;
+        }
 
-                    p.Latitude.Degrees = 53;
-                    p.Latitude.Minutes = 13;
-                    p.Latitude.Seconds = 156.43f;
+        private static PointOfInterestData AddFromResource(string name)
+        {
+            ResourceLoader resourceLoader = ResourceLoader.GetForViewIndependentUse("Points");
 
-                    p.Longtitude.Degrees = 45;
-                    p.Longtitude.Minutes = 82;
-                    p.Longtitude.Seconds = 645.83f;
-                    p.Longtitude.IsPositive = false;
+            PointOfInterestData pointOfInterestData = new PointOfInterestData();
 
+            pointOfInterestData.FileName            = name + ".json";
+            pointOfInterestData.ImageUri            = @"ms-appx:Assets/" + name + ".jpg";
+            pointOfInterestData.Name                = resourceLoader.GetString(name + "/Name");
+            pointOfInterestData.Description         = resourceLoader.GetString(name + "/Description");
+            pointOfInterestData.Latitude.Degrees    = int.Parse(resourceLoader.GetString(name + "/Latitude/Degrees"));
+            pointOfInterestData.Latitude.Minutes    = int.Parse(resourceLoader.GetString(name + "/Latitude/Minutes"));
+            pointOfInterestData.Latitude.Seconds    = float.Parse(resourceLoader.GetString(name + "/Latitude/Seconds"));
+            pointOfInterestData.Longtitude.Degrees  = int.Parse(resourceLoader.GetString(name + "/Longtitude/Degrees"));
+            pointOfInterestData.Longtitude.Minutes  = int.Parse(resourceLoader.GetString(name + "/Longtitude/Minutes"));
+            pointOfInterestData.Longtitude.Seconds  = float.Parse(resourceLoader.GetString(name + "/Longtitude/Seconds"));
+            pointOfInterestData.LastVisit           = DateTime.Now;
 
-                    p.FileName = i.ToString() + ".json";
-
-                    AddPoint(p);
-                }
-            }
+            return pointOfInterestData;
         }
 
         private static async void PointOfInterestDataPropertyChangedEventHandler(object sender, PropertyChangedEventArgs e)

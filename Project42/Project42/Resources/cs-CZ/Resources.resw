@@ -60,4 +60,16 @@
   <data name="Description.Text" xml:space="preserve">
     <value>Popis</value>
   </data>
+  <data name="N" xml:space="preserve">
+    <value>s. š.</value>
+  </data>
+  <data name="S" xml:space="preserve">
+    <value>j. š.</value>
+  </data>
+  <data name="E" xml:space="preserve">
+    <value>v. d.</value>
+  </data>
+  <data name="W" xml:space="preserve">
+    <value>z. d.</value>
+  </data>
 </root>
