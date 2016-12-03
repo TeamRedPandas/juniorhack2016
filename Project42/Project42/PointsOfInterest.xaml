@@ -163,7 +163,7 @@
                           />
 
             <AppBarButton x:Name="ABB_Update"
-                          x:Uid="SelectButton"
+                          x:Uid="RefreshButton"
                           Icon="Refresh"
                           Click="ABB_Update_Click"
                           />

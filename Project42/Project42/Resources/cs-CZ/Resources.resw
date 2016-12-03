@@ -87,4 +87,13 @@
   <data name="NoPointsPlaceholder.Text" xml:space="preserve">
     <value>Historie je prázdná</value>
   </data>
+  <data name="Destination.ToastNotification" xml:space="preserve">
+    <value>Bod zájmu je poblíž</value>
+  </data>
+  <data name="RefreshButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Obnovit</value>
+  </data>
+  <data name="RefreshButton.Label" xml:space="preserve">
+    <value>Obnovit</value>
+  </data>
 </root>

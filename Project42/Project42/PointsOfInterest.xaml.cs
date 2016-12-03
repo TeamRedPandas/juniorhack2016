@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.Devices.Enumeration;
 using Windows.Storage;
 using Windows.UI.Core;
@@ -29,6 +30,11 @@ namespace Project42
         PointOfInterestData model;
 
         ToastContent content;
+        
+        /*private static string GetToastNotificationText(string key)
+        {
+            return ResourceLoader.GetString("Resources/Destination/ToastNotification").ToString();
+        }*/
 
         private bool Selection
         {
@@ -69,7 +75,7 @@ namespace Project42
                                 {
                                     new AdaptiveText()
                                     {
-                                        Text = "Destination nearby"
+                                        Text = ResourceLoader.GetForViewIndependentUse("Resources").GetString("Destination/ToastNotification") //ResourceLoader.GetString("Destination/ToastNotification")
                                     },
 
                                     new AdaptiveText()
@@ -80,7 +86,8 @@ namespace Project42
 
                         AppLogoOverride = new ToastGenericAppLogo()
                         {
-                            Source = "oneAlarm.png"
+                            Source = model.ImageUri,
+                            AlternateText = "proc"
                         }
                     }
                 },

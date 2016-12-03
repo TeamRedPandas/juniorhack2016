@@ -87,4 +87,13 @@
   <data name="NoPointsPlaceholder.Text" xml:space="preserve">
     <value>Geschichte ist leer</value>
   </data>
+  <data name="Destination.ToastNotification" xml:space="preserve">
+    <value>Beacon in der Nähe</value>
+  </data>
+  <data name="RefreshButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Erneuern</value>
+  </data>
+  <data name="RefreshButton.Label" xml:space="preserve">
+    <value>Erneuern</value>
+  </data>
 </root>
