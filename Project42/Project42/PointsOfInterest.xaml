@@ -144,10 +144,11 @@
                                        />
 
                             <Button x:Name="PlaySound"
-                                    Content="Play sample"
-                                    Click="PlaySound_Click"
+                                    x:Uid="PlayGuide"
                                     HorizontalAlignment="Left"
-                                    Margin="10"/>
+                                    Margin="10"
+                                    Click="PlaySound_Click"
+                                    />
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
