@@ -20,37 +20,28 @@ namespace Project42
     {
         public ObservableCollection<DeviceInformation> _device = new ObservableCollection<DeviceInformation>();
         
-        Timer forceUpdate;
 
         public byte[] DEMO_DESTINATION_ONE = { 0x20, 0x16, 0x04, 0x11, 0x48, 0x82 }; //0x201604114882;
         public byte[] DEMO_DESTINATION_TWO = { 0x20, 0x16, 0x04, 0x11, 0x48, 0x82 }; //0x201604114882;
-
-        public Action UpdateUI;
+        
 
         public BlueToothBackgroundWorker()
         {
-            forceUpdate = new Timer(Scan, null, 0, 5000);
         }
 
-        private async void Scan(object state)
+        public async void Scan()
         {
-            List<DeviceInformation> temp = new List<DeviceInformation>();
+            List<DeviceInformation> temp =  (await DeviceInformation.FindAllAsync(BluetoothDevice.GetDeviceSelector())).ToList();
+            //temp.AddAll((await DeviceInformation.FindAllAsync(BluetoothDevice.GetDeviceSelectorFromPairingState(false))).ToList());
 
-            temp.AddAll((await DeviceInformation.FindAllAsync(BluetoothDevice.GetDeviceSelector())).ToList());
-            temp.AddAll((await DeviceInformation.FindAllAsync(BluetoothDevice.GetDeviceSelectorFromPairingState(false))).ToList());
-            
-            foreach(var item in temp.ToList())
-            {
-                if (!Compare(item, DEMO_DESTINATION_ONE))
-                    temp.Remove(item);
-            }
+            temp = temp.Where(item => Compare(item, DEMO_DESTINATION_ONE)).ToList();
 
             lock (_device)
             {
                 _device = new ObservableCollection<DeviceInformation>(temp);
             }
 
-            foreach (var i in _device)
+            /*foreach (var i in _device)
             {
                 Debug.WriteLine($"{i.Id} {i.Name}");
 
@@ -68,9 +59,7 @@ namespace Project42
 
                     Debug.WriteLine(pairingResult.Status);
                 }
-            }
-
-            UpdateUI?.Invoke();
+            }*/
         }
 
         private void A(DeviceInformationCustomPairing sender, DevicePairingRequestedEventArgs args)

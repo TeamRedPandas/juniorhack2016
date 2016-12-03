@@ -140,6 +140,12 @@
                           Icon="Bullets"
                           Click="ToggleSelection"
                           />
+
+            <AppBarButton x:Name="ABB_Update"
+                          x:Uid="SelectButton"
+                          Icon="Refresh"
+                          Click="ABB_Update_Click"
+                          />
         </CommandBar>
     </Grid>
 </local:PageBase>

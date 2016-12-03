@@ -1,11 +1,14 @@
-﻿using Project42;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
+using Project42;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.Devices.Enumeration;
 using Windows.Storage;
 using Windows.UI.Core;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -20,9 +23,12 @@ namespace Project42
             get { return Collection; }
         }
         
+
         BlueToothBackgroundWorker BTWorker;
 
         PointOfInterestData model;
+
+        ToastContent content;
 
         private bool Selection
         {
@@ -46,13 +52,58 @@ namespace Project42
             InitializeComponent();
 
             model = PointOfInterestData.AssignFromResource("CharlesBridge");
-            
+
             //AddPoint(model);
 
             //AddPoint(PointOfInterestData.AssignFromResource("CharlesBridge"));
 
+            content = new ToastContent()
+            {
+                Launch = "app-defined-string",
+
+                Visual = new ToastVisual()
+                {
+                    BindingGeneric = new ToastBindingGeneric()
+                    {
+                        Children =
+                                {
+                                    new AdaptiveText()
+                                    {
+                                        Text = "Destination nearby"
+                                    },
+
+                                    new AdaptiveText()
+                                    {
+                                        Text = model.Name
+                                    }
+                                },
+
+                        AppLogoOverride = new ToastGenericAppLogo()
+                        {
+                            Source = "oneAlarm.png"
+                        }
+                    }
+                },
+
+                Actions = new ToastActionsCustom()
+                {
+                    Buttons =
+                            {
+                                new ToastButton("OK", "ok")
+                                {
+                                    ImageUri = "ok.png"
+                                }
+                            }
+                },
+
+                Audio = new ToastAudio()
+                {
+                    Src = new Uri("ms-winsoundevent:Notification.Reminder")
+                }
+            };
+
             BTWorker = new BlueToothBackgroundWorker();
-            BTWorker.UpdateUI = ContentControlHandler;
+
         }
 
         private async void ContentControlHandler()
@@ -64,6 +115,8 @@ namespace Project42
                     () =>
                     {
                         AddPoint(model);
+                        ToastNotification notification = new ToastNotification(content.GetXml());
+                        ToastNotificationManager.CreateToastNotifier().Show(notification);
                     });
             if (LV_Points.Items.Contains(model) && !IsAvailable)
                 await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
@@ -91,6 +144,14 @@ namespace Project42
                     await pointFile.DeleteAsync();
                 }
             }
+        }
+
+        private void ABB_Update_Click(object sender, RoutedEventArgs e)
+        {
+            Task.Factory.StartNew(() => {
+                BTWorker.Scan();
+                ContentControlHandler();
+            }); 
         }
     }
 }

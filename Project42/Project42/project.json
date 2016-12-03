@@ -3,6 +3,7 @@
     "BluetoothManager": "1.0.1",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "Microsoft.Services.Store.SDK": "10.1610.31001",
+    "Microsoft.Toolkit.Uwp.Notifications": "1.2.0",
     "Newtonsoft.Json": "9.0.1"
   },
   "frameworks": {
