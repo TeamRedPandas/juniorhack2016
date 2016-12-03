@@ -48,7 +48,7 @@ namespace Project42
         {
             if (pageLoaded && frameLoaded)
             {
-                Fr_Main.Navigate(typeof(PointsOfInterest));
+                Fr_Main.Navigate(typeof(TestPage));
             }
         }
     }
