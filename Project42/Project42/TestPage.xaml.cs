@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WindowsBluetooth;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -39,7 +40,6 @@ namespace Project42
         private StreamSocket _socket;
         BlueToothBackgroundWorker BTWorker;
         private RfcommDeviceService _service;
-        DataReader reader;
 
         public TestPage()
         {
@@ -111,45 +111,18 @@ namespace Project42
                 _service = await RfcommDeviceService.FromIdAsync(
                                                         device.Id);
 
-                /*_socket = new StreamSocket();
+                /*BluetoothManager wtf = new BluetoothManager();
+                
+                wtf.StatusChangedNotification += new BluetoothManager.StatusChangedDelegate(okey);
+                wtf.DiagnosticsChangedNotification += new BluetoothManager.DiagnosticsMessageDelegate(ahano);
+                wtf.Initialise(device.Name);
+                wtf.SendBytes(new byte[]{ 0x1 } );
+                wtf.ReadRequest();*/
+
+                _socket = new StreamSocket();
                 
                 await _socket.ConnectAsync(_service.ConnectionHostName,
-                                           _service.ConnectionServiceName);*/
-
-                StreamSocketListener listener = new StreamSocketListener();
-                listener.ConnectionReceived += Listener_ConnectionReceived;
-
-                listener.BindServiceNameAsync("12345").AsTask().Wait();
-
-                /*DataWriter writer = new DataWriter(_socket.OutputStream);
-
-                writer.WriteString("1");
-                await writer.StoreAsync();
-                await writer.FlushAsync();*/
-
-                /*var aqsFilter = SerialDevice.GetDeviceSelector("COM3");
-                var devices = await DeviceInformation.FindAllAsync(aqsFilter);
-
-                DeviceInformation temp = ((DeviceInformation)t.SelectedItem) ?? _Devices[0];
-
-                var device = devices[0]; //devices.FirstOrDefault(x => x.Id.Split('-')[1].Split('#')[0] == temp.Id.Split('-')[1]);
-
-                if (device != null)
-                {
-                    var deviceId = devices.First().Id;
-                    var _device = await SerialDevice.FromIdAsync(deviceId);
-
-                    if (device != null)
-                    {
-                        _device.BaudRate = 57600;
-                        _device.StopBits = SerialStopBitCount.One;
-                        _device.DataBits = 8;
-                        _device.Parity = SerialParity.None;
-                        _device.Handshake = SerialHandshake.None;
-
-                        reader = new DataReader(_device.InputStream);
-                    }
-                }*/
+                                           _service.ConnectionServiceName);
             }
             catch (Exception ex)
             {
