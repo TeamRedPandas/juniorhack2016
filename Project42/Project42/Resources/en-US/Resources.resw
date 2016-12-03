@@ -84,4 +84,7 @@
   <data name="DeleteButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Delete selection</value>
   </data>
+  <data name="NoPointsPlaceholder.Text" xml:space="preserve">
+    <value>History is empty</value>
+  </data>
 </root>

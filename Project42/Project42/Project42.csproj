@@ -109,6 +109,7 @@
     <Compile Include="BoolToCoordinateCharConverter.cs" />
     <Compile Include="Coordinate.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="IntToBoolInvertedConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -217,10 +218,8 @@
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DEMO\" />
-  </ItemGroup>
-  <Import Project="..\..\..\UWPHelper\UWPHelper\UWPHelper\UWPHelper.projitems" Label="Shared" />
+  <ItemGroup />
+  <Import Project="..\UWPHelper\UWPHelper.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
