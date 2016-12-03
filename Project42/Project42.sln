@@ -5,9 +5,12 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project42", "Project42\Project42.csproj", "{6C9FE48F-B01E-4238-A67D-C6F0ADDA6D3A}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UWPHelper", "UWPHelper\UWPHelper.shproj", "{7F198FCD-241B-4AAB-9F63-F944CB179D7F}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		..\..\UWPHelper\UWPHelper\UWPHelper\UWPHelper.projitems*{6c9fe48f-b01e-4238-a67d-c6f0adda6d3a}*SharedItemsImports = 4
+		UWPHelper\UWPHelper.projitems*{6c9fe48f-b01e-4238-a67d-c6f0adda6d3a}*SharedItemsImports = 4
+		UWPHelper\UWPHelper.projitems*{7f198fcd-241b-4aab-9f63-f944cb179d7f}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
