@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WindowsBluetooth;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -39,7 +40,9 @@ namespace Project42
         private StreamSocket _socket;
         BlueToothBackgroundWorker BTWorker;
         private RfcommDeviceService _service;
-        DataReader reader;
+
+        DataWriter dw;
+        DataReader dr;
 
         public TestPage()
         {
@@ -51,6 +54,29 @@ namespace Project42
         private async void btnSend_Click(object sender,
                                          RoutedEventArgs e)
         {
+            /*DataReader reader = null;
+
+            var aqsFilter = SerialDevice.GetDeviceSelector("COM3");
+            var devices = await DeviceInformation.FindAllAsync(aqsFilter);
+            if (devices.Any())
+            {
+                var deviceId = devices.First().Id;
+                var device = await SerialDevice.FromIdAsync(deviceId);
+
+                if (device != null)
+                {
+                    device.BaudRate = 57600;
+                    device.StopBits = SerialStopBitCount.One;
+                    device.DataBits = 8;
+                    device.Parity = SerialParity.None;
+                    device.Handshake = SerialHandshake.None;
+
+                    reader = new DataReader(device.InputStream);
+                }
+            }
+
+            Debug.WriteLine(dr.ReadString(dr.UnconsumedBufferLength));*/
+
             int dummy;
 
             if (!int.TryParse(tbInput.Text, out dummy))
@@ -71,14 +97,12 @@ namespace Project42
 
             try
             {
-                var writer = new DataWriter(_socket.OutputStream);
+                dw.WriteString("1");
 
-                writer.WriteString(msg);
+                var store = dw.StoreAsync().AsTask();
 
-                // Launch an async task to 
-                //complete the write operation
-                var store = writer.StoreAsync().AsTask();
-
+                Debug.WriteLine(dr.ReadString(dr.UnconsumedBufferLength));
+                
                 return await store;
             }
             catch (Exception ex)
@@ -108,64 +132,26 @@ namespace Project42
                 if (device == null)
                     throw new Exception("nefunguje toooooooooooooooooooo");
 
-                _service = await RfcommDeviceService.FromIdAsync(
-                                                        device.Id);
-
-                /*_socket = new StreamSocket();
+                _service = await RfcommDeviceService.FromIdAsync(device.Id);
+                _socket = new StreamSocket();
                 
                 await _socket.ConnectAsync(_service.ConnectionHostName,
-                                           _service.ConnectionServiceName);*/
+                                           _service.ConnectionServiceName,
+                                           SocketProtectionLevel.BluetoothEncryptionAllowNullAuthentication);
 
-                StreamSocketListener listener = new StreamSocketListener();
-                listener.ConnectionReceived += Listener_ConnectionReceived;
 
-                listener.BindServiceNameAsync("12345").AsTask().Wait();
+                dw = new DataWriter(_socket.OutputStream);
+               dr = new DataReader(_socket.InputStream);
 
-                /*DataWriter writer = new DataWriter(_socket.OutputStream);
+                
 
-                writer.WriteString("1");
-                await writer.StoreAsync();
-                await writer.FlushAsync();*/
+                //string result = dr.ReadString(4);
 
-                /*var aqsFilter = SerialDevice.GetDeviceSelector("COM3");
-                var devices = await DeviceInformation.FindAllAsync(aqsFilter);
-
-                DeviceInformation temp = ((DeviceInformation)t.SelectedItem) ?? _Devices[0];
-
-                var device = devices[0]; //devices.FirstOrDefault(x => x.Id.Split('-')[1].Split('#')[0] == temp.Id.Split('-')[1]);
-
-                if (device != null)
-                {
-                    var deviceId = devices.First().Id;
-                    var _device = await SerialDevice.FromIdAsync(deviceId);
-
-                    if (device != null)
-                    {
-                        _device.BaudRate = 57600;
-                        _device.StopBits = SerialStopBitCount.One;
-                        _device.DataBits = 8;
-                        _device.Parity = SerialParity.None;
-                        _device.Handshake = SerialHandshake.None;
-
-                        reader = new DataReader(_device.InputStream);
-                    }
-                }*/
+                
             }
             catch (Exception ex)
             {
                 tbError.Text = ex.Message;
-            }
-        }
-
-        private async void Listener_ConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
-        {
-            Debug.WriteLine("new connection");
-
-            using (var dw = new DataWriter(args.Socket.OutputStream))
-            {
-                dw.WriteString("1");
-                await dw.StoreAsync();
-                dw.DetachStream();
             }
         }
 

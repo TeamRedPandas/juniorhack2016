@@ -45,29 +45,31 @@ namespace Project42
 
             lock (_device)
             {
-                _device = new ObservableCollection<DeviceInformation>(temp); //.AddAll(temp_2);
+                _device = new ObservableCollection<DeviceInformation>(temp);
             }
 
             foreach(var i in _device)
             {
+                DevicePairingResult pairingResult = null;
+                
                 if (!i.Pairing.IsPaired && i.Pairing.CanPair)
                 {
                     DevicePairingKinds pairingKind = DevicePairingKinds.ConfirmOnly;
 
                     DeviceInformationCustomPairing customPairing = i.Pairing.Custom;
 
-                    customPairing.PairingRequested += cancer;
+                    customPairing.PairingRequested += A;
 
-                    var pairingResult = await customPairing.PairAsync(pairingKind, DevicePairingProtectionLevel.EncryptionAndAuthentication);
+                    pairingResult = await customPairing.PairAsync(pairingKind, DevicePairingProtectionLevel.EncryptionAndAuthentication);
 
                     Debug.WriteLine(pairingResult.Status);
                 }
             }
         }
 
-        private void cancer(DeviceInformationCustomPairing sender, DevicePairingRequestedEventArgs args)
+        private void A(DeviceInformationCustomPairing sender, DevicePairingRequestedEventArgs args)
         {
-            args.Accept();
+            args.Accept("1234");
         }
 
         private bool Compare(DeviceInformation hledanejCancer)
