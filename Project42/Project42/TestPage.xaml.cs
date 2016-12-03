@@ -41,6 +41,9 @@ namespace Project42
         BlueToothBackgroundWorker BTWorker;
         private RfcommDeviceService _service;
 
+        DataWriter dw;
+        DataReader dr;
+
         public TestPage()
         {
             this.InitializeComponent();
@@ -51,6 +54,29 @@ namespace Project42
         private async void btnSend_Click(object sender,
                                          RoutedEventArgs e)
         {
+            /*DataReader reader = null;
+
+            var aqsFilter = SerialDevice.GetDeviceSelector("COM3");
+            var devices = await DeviceInformation.FindAllAsync(aqsFilter);
+            if (devices.Any())
+            {
+                var deviceId = devices.First().Id;
+                var device = await SerialDevice.FromIdAsync(deviceId);
+
+                if (device != null)
+                {
+                    device.BaudRate = 57600;
+                    device.StopBits = SerialStopBitCount.One;
+                    device.DataBits = 8;
+                    device.Parity = SerialParity.None;
+                    device.Handshake = SerialHandshake.None;
+
+                    reader = new DataReader(device.InputStream);
+                }
+            }
+
+            Debug.WriteLine(dr.ReadString(dr.UnconsumedBufferLength));*/
+
             int dummy;
 
             if (!int.TryParse(tbInput.Text, out dummy))
@@ -71,14 +97,12 @@ namespace Project42
 
             try
             {
-                var writer = new DataWriter(_socket.OutputStream);
+                dw.WriteString("1");
 
-                writer.WriteString(msg);
+                var store = dw.StoreAsync().AsTask();
 
-                // Launch an async task to 
-                //complete the write operation
-                var store = writer.StoreAsync().AsTask();
-
+                Debug.WriteLine(dr.ReadString(dr.UnconsumedBufferLength));
+                
                 return await store;
             }
             catch (Exception ex)
@@ -108,37 +132,26 @@ namespace Project42
                 if (device == null)
                     throw new Exception("nefunguje toooooooooooooooooooo");
 
-                _service = await RfcommDeviceService.FromIdAsync(
-                                                        device.Id);
-
-                /*BluetoothManager wtf = new BluetoothManager();
-                
-                wtf.StatusChangedNotification += new BluetoothManager.StatusChangedDelegate(okey);
-                wtf.DiagnosticsChangedNotification += new BluetoothManager.DiagnosticsMessageDelegate(ahano);
-                wtf.Initialise(device.Name);
-                wtf.SendBytes(new byte[]{ 0x1 } );
-                wtf.ReadRequest();*/
-
+                _service = await RfcommDeviceService.FromIdAsync(device.Id);
                 _socket = new StreamSocket();
                 
                 await _socket.ConnectAsync(_service.ConnectionHostName,
-                                           _service.ConnectionServiceName);
+                                           _service.ConnectionServiceName,
+                                           SocketProtectionLevel.BluetoothEncryptionAllowNullAuthentication);
+
+
+                dw = new DataWriter(_socket.OutputStream);
+               dr = new DataReader(_socket.InputStream);
+
+                
+
+                //string result = dr.ReadString(4);
+
+                
             }
             catch (Exception ex)
             {
                 tbError.Text = ex.Message;
-            }
-        }
-
-        private async void Listener_ConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
-        {
-            Debug.WriteLine("new connection");
-
-            using (var dw = new DataWriter(args.Socket.OutputStream))
-            {
-                dw.WriteString("1");
-                await dw.StoreAsync();
-                dw.DetachStream();
             }
         }
 
