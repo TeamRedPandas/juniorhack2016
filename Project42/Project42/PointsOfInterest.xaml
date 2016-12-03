@@ -146,7 +146,7 @@
                             <Button x:Name="PlaySound"
                                     x:Uid="PlayGuide"
                                     HorizontalAlignment="Left"
-                                    Margin="10"
+                                    Margin="0,10,0,0"
                                     Click="PlaySound_Click"
                                     />
                         </StackPanel>
