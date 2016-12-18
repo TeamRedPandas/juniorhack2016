@@ -63,6 +63,7 @@ namespace Project42
             await Task.CompletedTask;
             Collection = new ObservableCollection<PointOfInterestData>();
             Collection.Add(PointOfInterestData.AssignFromResource("CharlesBridge"));
+            Collection.Add(PointOfInterestData.AssignFromResource("Karlstejn"));
 
             IReadOnlyList<StorageFile> pointFiles = await (await GetFolderAsync()).GetFilesAsync();
 

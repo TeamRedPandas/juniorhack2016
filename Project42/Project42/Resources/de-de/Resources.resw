@@ -96,7 +96,7 @@
   <data name="RefreshButton.Label" xml:space="preserve">
     <value>Erneuern</value>
   </data>
-  <data name="PlayGuide.Content" xml:space="preserve">
+  <data name="GuideTitle.Text" xml:space="preserve">
     <value>Führung</value>
   </data>
 </root>

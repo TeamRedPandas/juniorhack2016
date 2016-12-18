@@ -150,6 +150,8 @@ namespace Project42
                     await pointFile.DeleteAsync();
                 }
             }
+
+            Selection = false;
         }
 
         private void ABB_Update_Click(object sender, RoutedEventArgs e)
